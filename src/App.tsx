@@ -1,50 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Messages} from "./messages/Messages";
 import {AddMessagesForm} from "./addMessageForm/addMessagesForm";
+import {useAppDispatch} from "./utils/hook/hook";
+import {startMessagesListening, stopMessagesListening} from "./bll/reducers/chat-reducer";
 
-
-export type ChatMessageType = {
-    userId: number,
-    userName: string,
-    message: string,
-    photo: string
-}
 
 function App() {
 
-    const [wsChannel, setWsChannel] = useState<WebSocket | null>(null)
-
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
-        let ws: WebSocket
-        const closeHandler = () => {
-            setTimeout(createChannel, 3000)
+        dispatch(startMessagesListening())
+        return ()=>{
+            dispatch(stopMessagesListening())
         }
-
-        function createChannel() {
-
-            ws?.removeEventListener("close", closeHandler)
-            ws?.close()
-
-            ws = new WebSocket("wss://social-network.samuraijs.com/handlers/ChatHandler.ashx")
-            ws.addEventListener("close", closeHandler)
-            setWsChannel(ws)
-        }
-
-        createChannel()
-
-        return () => {
-            ws.removeEventListener("close", closeHandler)
-            ws.close()
-        }
-    }, [])
-
+    }, [dispatch])
 
     return (
         <div>
-            <Messages wsChannel={wsChannel}/>
-            <AddMessagesForm wsChannel={wsChannel}/>
+            <Messages/>
+            <AddMessagesForm/>
         </div>
     )
 }
