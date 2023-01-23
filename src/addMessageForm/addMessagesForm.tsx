@@ -1,31 +1,18 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
+import {useAppDispatch} from "../utils/hook/hook";
+import {sendMessage} from "../bll/reducers/chat-reducer";
 
-type AddMessagesFormType = {
-    wsChannel: WebSocket | null
-}
-
-export const AddMessagesForm = (props: AddMessagesFormType) => {
+export const AddMessagesForm = () => {
 
     const [message, setMessage] = useState("")
-    const [webS, setWebS] = useState<"pending" | "ready">("pending")
 
-    useEffect(() => {
-        let openHandler = () => {
-            setWebS("ready")
-        }
+    const dispatch = useAppDispatch()
 
-        props.wsChannel?.addEventListener("open", openHandler)
-
-        return () => {
-            props.wsChannel?.removeEventListener("open", openHandler)
-        }
-    }, [props.wsChannel])
-
-    const sendMessage = () => {
+    const sendMessageHandler = () => {
         if (!message) {
             return
         }
-        props.wsChannel?.send(message)
+        dispatch(sendMessage(message))
         setMessage("")
     }
 
@@ -36,7 +23,7 @@ export const AddMessagesForm = (props: AddMessagesFormType) => {
     return (
         <div>
             <textarea onChange={onChangeSetMessage} value={message}/>
-            <button disabled={props.wsChannel === null || webS !== "ready"} onClick={sendMessage}>send</button>
+            <button disabled={false} onClick={sendMessageHandler}>send</button>
         </div>
     );
 };
