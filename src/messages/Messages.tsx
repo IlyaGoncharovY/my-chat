@@ -1,32 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Message} from './message/Message';
-import {ChatMessageType} from "../App";
+import {ChatMessageType} from "../api/chatAPI";
+import {useSelector} from "react-redux";
+import {AppStateType} from "../bll/store";
 
+export const Messages = () => {
 
-type MessagesType = {
-    wsChannel: WebSocket | null
-}
-
-export const Messages = (props: MessagesType) => {
-
-    const [chatMessages, setChatMessages] = useState<ChatMessageType[]>([])
-
-    useEffect(() => {
-        let messageHandler = (e: MessageEvent) => {
-            let newMessage = JSON.parse(e.data)
-            setChatMessages((prevMessage) => [...prevMessage, ...newMessage])
-        }
-
-        props.wsChannel?.addEventListener("message", messageHandler)
-
-        return () => {
-            props.wsChannel?.removeEventListener("message", messageHandler)
-        }
-    }, [props.wsChannel])
+   const messages = useSelector<AppStateType, ChatMessageType[]>(state => state.Chat.messages)
 
     return (
         <div style={{height: "400px", overflowY: "auto"}}>
-            {chatMessages.map((el, index) => <Message message={el} key={index}/>)}
+            {messages.map((el, index) => <Message message={el} key={index}/>)}
         </div>
     );
 };

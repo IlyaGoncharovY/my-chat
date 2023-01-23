@@ -1,5 +1,6 @@
 import React from 'react';
-import {ChatMessageType} from "../../App";
+import {ChatMessageType} from "../../api/chatAPI";
+
 
 type MessageType = {
    message: ChatMessageType
