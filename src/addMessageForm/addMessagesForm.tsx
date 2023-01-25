@@ -1,10 +1,13 @@
 import React, {ChangeEvent, useState} from 'react';
 import {useAppDispatch} from "../utils/hook/hook";
-import {sendMessage} from "../bll/reducers/chat-reducer";
+import {sendMessage, statusType} from "../bll/reducers/chat-reducer";
+import {useSelector} from "react-redux";
+import {AppStateType} from "../bll/store";
 
 export const AddMessagesForm = () => {
 
     const [message, setMessage] = useState("")
+    const status = useSelector<AppStateType, statusType>(state => state.Chat.status)
 
     const dispatch = useAppDispatch()
 
@@ -23,7 +26,7 @@ export const AddMessagesForm = () => {
     return (
         <div>
             <textarea onChange={onChangeSetMessage} value={message}/>
-            <button disabled={false} onClick={sendMessageHandler}>send</button>
+            <button disabled={status !== "ready"} onClick={sendMessageHandler}>send</button>
         </div>
     );
 };
