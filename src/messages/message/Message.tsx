@@ -1,12 +1,13 @@
 import React from 'react';
-import {ChatMessageType} from "../../api/chatAPI";
+import {ChatMessageTypeAPI} from "../../api/chatAPI";
 
 
 type MessageType = {
-   message: ChatMessageType
+   message: ChatMessageTypeAPI
 }
 
-export const Message = (props: MessageType) => {
+export const Message = React.memo((props: MessageType) => {
+
     return (
         <div>
             <div>
@@ -22,5 +23,5 @@ export const Message = (props: MessageType) => {
             <hr/>
         </div>
     );
-};
+});
 

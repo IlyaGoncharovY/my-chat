@@ -1,11 +1,14 @@
-import {ChatAPI, ChatMessageType} from "../../api/chatAPI";
+import {ChatAPI, ChatMessageTypeAPI} from "../../api/chatAPI";
 import {AppThunk} from "../store";
 import {Dispatch} from "react";
+import {v1} from "uuid"
 
 export type statusType = "pending" | "ready" | "error"
 
+export type ChatMassageType = ChatMessageTypeAPI & {id: string}
+
 const initialState = {
-    messages: [] as ChatMessageType[],
+    messages: [] as ChatMassageType[],
     status: "pending" as statusType
 }
 
@@ -18,7 +21,8 @@ export const ChatReducer = (state: InitialStateType = initialState, action: Chat
         case "CHAT/SET-MESSAGE":
             return {
                 ...state,
-                messages: [...state.messages, ...action.messages]
+                messages: [...state.messages, ...action.messages.map(el => ({...el, id: v1()}))]
+                    .filter((el, index, array) => index >= array.length - 100)
             }
         case "CHAT/CHANGE-STATUS":
             return {
@@ -33,7 +37,7 @@ export const ChatReducer = (state: InitialStateType = initialState, action: Chat
 
 
 type setMessagesACType = ReturnType<typeof setMessagesAC>
-export const setMessagesAC = (messages: ChatMessageType[]) => {
+export const setMessagesAC = (messages: ChatMessageTypeAPI[]) => {
     return {
         type: "CHAT/SET-MESSAGE",
         messages
@@ -48,7 +52,7 @@ export const changeStatusAC = (status: statusType) => {
     } as const
 }
 
-let _newMessageHandler: ((messages: ChatMessageType[]) => void) | null = null
+let _newMessageHandler: ((messages: ChatMessageTypeAPI[]) => void) | null = null
 
 const newMessageHandlerCreate = (dispatch: Dispatch<any>) => {
     if (_newMessageHandler === null) {
