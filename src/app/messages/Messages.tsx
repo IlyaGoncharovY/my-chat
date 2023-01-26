@@ -1,8 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Message} from './message/Message';
 import {useSelector} from "react-redux";
-import {AppStateType} from "../bll/store";
-import {ChatMassageType} from "../bll/reducers/chat-reducer";
+import {AppStateType} from "../../bll/store";
+import {ChatMassageType} from "../../bll/reducers/chat-reducer";
 
 export const Messages = React.memo(() => {
 
