@@ -1,14 +1,12 @@
 import React, {useEffect} from 'react';
 import {Messages} from "./messages/Messages";
 import {AddMessagesForm} from "./addMessageForm/addMessagesForm";
-import {useAppDispatch} from "../utils/hook/hook";
-import {startMessagesListening, statusType, stopMessagesListening} from "../bll/reducers/chat-reducer";
-import {useSelector} from "react-redux";
-import {AppStateType} from "../bll/store";
+import {useAppDispatch, useAppSelector} from "../utils/hook/hook";
+import {startMessagesListening, stopMessagesListening} from "../bll/reducers/chat-reducer";
 
 function App() {
 
-    const status = useSelector<AppStateType, statusType>(state => state.Chat.status)
+    const status = useAppSelector(state => state.Chat.status)
 
     const dispatch = useAppDispatch()
 

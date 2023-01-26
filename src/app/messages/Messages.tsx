@@ -1,12 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Message} from './message/Message';
-import {useSelector} from "react-redux";
-import {AppStateType} from "../../bll/store";
-import {ChatMassageType} from "../../bll/reducers/chat-reducer";
+import {useAppSelector} from "../../utils/hook/hook";
 
 export const Messages = React.memo(() => {
 
-    const messages = useSelector<AppStateType, ChatMassageType[]>(state => state.Chat.messages)
+    const messages = useAppSelector(state => state.Chat.messages)
     const messagesAnchorRef = useRef<HTMLDivElement>(null)
 
     const [autoScrollActive, setAutoScrollActive] = useState(true)
