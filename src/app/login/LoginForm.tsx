@@ -4,13 +4,7 @@ import {useAppDispatch, useAppSelector} from "../../utils/hook/hook";
 import {loginTC} from "../../bll/reducers/auth-reducer";
 import {Navigate} from "react-router-dom";
 import {PATH} from "../../utils/path/path";
-
-
-type formikErrorType = {
-    email?: string
-    password?: string
-    rememberMe?: boolean
-}
+import * as Yup from 'yup';
 
 export const LoginForm = () => {
 
@@ -23,6 +17,14 @@ export const LoginForm = () => {
             password: "",
             rememberMe: false
         },
+        validationSchema: Yup.object().shape({
+            email: Yup.string().email('Invalid email').required('Required'),
+            password: Yup.string()
+                .min(4, 'Too Short!')
+                .max(50, 'Too Long!')
+                .required('Required'),
+        })
+        ,
         onSubmit: values => {
             dispatch(loginTC(values))
         }
@@ -39,6 +41,9 @@ export const LoginForm = () => {
                        id="email"
                        {...formik.getFieldProps('email')}
                 />
+                {formik.touched.email && formik.errors.email ? (
+                    <div>{formik.errors.email}</div>
+                ) : null}
             </div>
             <div>
                 <input
@@ -46,6 +51,9 @@ export const LoginForm = () => {
                     id="password"
                     {...formik.getFieldProps('password')}
                 />
+                {formik.touched.password && formik.errors.password ? (
+                    <div>{formik.errors.password}</div>
+                ) : null}
             </div>
             <div>
                 <input
