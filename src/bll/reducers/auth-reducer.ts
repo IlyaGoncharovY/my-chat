@@ -1,84 +1,55 @@
-import {authAPI} from "../../api/authAPI";
 import {AppThunk} from "../store";
-
-type loginParamsType = {
-    email: string,
-    password: string,
-    rememberMe: boolean
-}
-
-type initialStateType = {
-    id: number | null,
-    email: string | null,
-    login: string | null,
-    isAuth: boolean
-}
+import {authAPI, LoginParamsType, StatusCode} from "../../api/authAPI";
 
 let initialState = {
-    id: null,
-    email: null,
-    login: null,
-    isAuth: false
+    isLoggedIn: false
 }
 
-export type authActionType = setUserDataACType
+type initialStateType = typeof initialState
+export type AuthReducerActionType = setIsLoggedInACType
 
-export const AuthReducer = (state: initialStateType = initialState, action: authActionType): initialStateType => {
+export const AuthReducer = (state: initialStateType = initialState, action: AuthReducerActionType): initialStateType => {
     switch (action.type) {
-        case "AUTH/SET-DATA":
+        case "AUTH/SET-IS-LOGGED-IN": {
             return {
                 ...state,
-                ...action.payload
+                isLoggedIn: action.value
             }
-
+        }
         default:
             return state
     }
 }
 
-type setUserDataACType = ReturnType<typeof setUserDataAC>
-const setUserDataAC = (id: number | null,
-                       email: string | null,
-                       login: string | null,
-                       isAuth: boolean) => {
+
+type setIsLoggedInACType = ReturnType<typeof setIsLoggedIdAC>
+export const setIsLoggedIdAC = (value: boolean) => {
     return {
-        type: "AUTH/SET-DATA",
-        payload: {
-            id, email, login, isAuth
-        }
+        type: "AUTH/SET-IS-LOGGED-IN",
+        value
     } as const
 }
 
-export const getUserData = (): AppThunk => async dispatch => {
+export const loginTC = (userData: LoginParamsType) : AppThunk => async dispatch => {
     try {
-        const res = await authAPI.me()
-        let {id, email, login} = res.data.data
-        if (res.data.resulCode === 0) {
-            dispatch(setUserDataAC(id, email, login, true))
+        const res = await authAPI.login(userData)
+        if (res.data.resultCode === StatusCode.Ok) {
+            dispatch(setIsLoggedIdAC(true))
         }
     } catch (e) {
         console.log({e})
     }
 }
 
-export const login = (formData: loginParamsType) : AppThunk => async dispatch => {
-    try {
-        const res = await authAPI.login(formData)
-        if (res.data.resultCode === 0) {
-            dispatch(getUserData())
-        }
-    } catch (e) {
-        console.log({e})
-    }
-}
-
-export const logOut = () : AppThunk => async dispatch => {
+export const logOutTC = () : AppThunk => async dispatch => {
     try {
         const res = await authAPI.logout()
-        if (res.data.resultCode === 0) {
-            dispatch(setUserDataAC(null, null, null, false))
+        if (res.data.resultCode === StatusCode.Ok) {
+            dispatch(setIsLoggedIdAC( false))
         }
     } catch (e) {
         console.log({e})
     }
 }
+
+
