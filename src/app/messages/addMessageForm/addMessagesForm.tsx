@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
-import {useAppDispatch, useAppSelector} from "../../utils/hook/hook";
-import {sendMessage} from "../../bll/reducers/chat-reducer";
+import {useAppDispatch, useAppSelector} from "../../../utils/hook/hook";
+import {sendMessage} from "../../../bll/reducers/chat-reducer";
 
 export const AddMessagesForm = () => {
 
