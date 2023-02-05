@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 
 const instance = axios.create({
     withCredentials: true,
@@ -10,18 +10,38 @@ const instance = axios.create({
 
 export const authAPI = {
     login(data: LoginParamsType) {
-        return instance.post("auth/login", data)
-    },
-    logout() {
-        return instance.delete("auth/login")
+        return instance.post<LoginParamsType, AxiosResponse<ResponseLoginType<{ userId: number }>>>("auth/login", data)
     },
     me() {
-        return instance.get("auth/me")
-    }
+        return instance.get<ResponseLoginType<MeType>>("auth/me")
+    },
+    logout() {
+        return instance.delete<ResponseLoginType>("auth/login")
+    },
+
 }
 
-type LoginParamsType = {
+type MeType = {
+    id: number
+    email: string
+    login: string
+}
+
+export type LoginParamsType = {
     email: string,
     password: string,
-    rememberMe: boolean
+    rememberMe?: boolean
+    captcha?: string
+}
+
+export type ResponseLoginType<T = {}> = {
+    data: T;
+    messages: string[];
+    fieldsErrors: string[];
+    resultCode: number;
+}
+
+export enum StatusCode {
+    Ok,
+    Error
 }

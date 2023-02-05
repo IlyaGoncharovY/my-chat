@@ -25,7 +25,6 @@ const openHandler = () => {
 
 const errorHandler = () => {
     subscribersAboutStatus("error")
-    console.log("restart page!")
 }
 
 const cleanUp = () => {
