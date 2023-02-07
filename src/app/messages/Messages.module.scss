@@ -1,5 +1,11 @@
-.messagesBox {
-  min-height: 100%;
-  min-width: 70%;
-  overflowY: auto;
+.messagesBoxContainer {
+  margin: 20px;
+  border: 2px solid blue;
+  overflow: auto;
+  background-color: #c89c3d;
+  .messagesBox {
+
+
+  }
 }
+

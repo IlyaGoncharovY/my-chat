@@ -5,6 +5,7 @@ import {loginTC} from "../../bll/reducers/auth-reducer";
 import {Navigate} from "react-router-dom";
 import {PATH} from "../../utils/path/path";
 import * as Yup from 'yup';
+import {Button, Col, Container, Row} from "react-bootstrap";
 
 export const LoginForm = () => {
 
@@ -35,35 +36,60 @@ export const LoginForm = () => {
     }
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <div>
-                <input type="email"
-                       id="email"
-                       {...formik.getFieldProps('email')}
-                />
-                {formik.touched.email && formik.errors.email ? (
-                    <div>{formik.errors.email}</div>
-                ) : null}
-            </div>
-            <div>
-                <input
-                    type="password"
-                    id="password"
-                    {...formik.getFieldProps('password')}
-                />
-                {formik.touched.password && formik.errors.password ? (
-                    <div>{formik.errors.password}</div>
-                ) : null}
-            </div>
-            <div>
-                <input
-                    type="checkbox"
-                    id="rememberMe"
-                    {...formik.getFieldProps('rememberMe')}
-                />
-                <span>Remember me</span>
-            </div>
-            <button type="submit">Login</button>
-        </form>
+        <Container fluid>
+            <Row className="m-2">
+                <Col>
+                    <label>
+                        <p>
+                            To log in get registered <a href="https://social-network.samuraijs.com/"
+                                                        target={"_blank"}>here</a>
+                        </p>
+                        <p>
+                            or use common test account credentials:
+                        </p>
+                        <p>
+                            Email: free@samuraijs.com
+                        </p>
+                        <p>
+                            Password: free
+                        </p>
+                    </label>
+                </Col>
+            </Row>
+            <Row className="m-2">
+                <Col>
+                    <form onSubmit={formik.handleSubmit}>
+                        <div>
+                            <input type="email"
+                                   id="email"
+                                   {...formik.getFieldProps('email')}
+                            />
+                            {formik.touched.email && formik.errors.email ? (
+                                <div>{formik.errors.email}</div>
+                            ) : null}
+                        </div>
+                        <div>
+                            <input
+                                type="password"
+                                id="password"
+                                {...formik.getFieldProps('password')}
+                            />
+                            {formik.touched.password && formik.errors.password ? (
+                                <div>{formik.errors.password}</div>
+                            ) : null}
+                        </div>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                                {...formik.getFieldProps('rememberMe')}
+                            />
+                            <span>Remember me</span>
+                        </div>
+                        <Button type="submit" variant="primary">Login</Button>
+                    </form>
+                </Col>
+            </Row>
+        </Container>
     );
 };

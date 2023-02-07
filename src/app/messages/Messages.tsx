@@ -4,6 +4,8 @@ import {useAppSelector} from "../../utils/hook/hook";
 import {AddMessagesForm} from "./addMessageForm/addMessagesForm";
 import {Navigate} from "react-router-dom";
 import {PATH} from "../../utils/path/path";
+import s from "./Messages.module.scss"
+import {Col, Container, Row} from "react-bootstrap";
 
 export const Messages = React.memo(() => {
 
@@ -39,13 +41,18 @@ export const Messages = React.memo(() => {
     }
 
     return (
-        <>
-            <div style={{height: "400px", overflowY: "auto"}} onScroll={scrollHandler}>
+        <Container style={{border: "2px solid black"}}>
+            <Row className={s.messagesBoxContainer} onScroll={scrollHandler}>
                 {messages.map((el) => <Message message={el} key={el.id}/>)}
                 <div ref={messagesAnchorRef}></div>
-            </div>
-            <AddMessagesForm/>
-        </>
+            </Row>
+            <Row>
+                <Col xs={5}>
+                    <AddMessagesForm/>
+                </Col>
+            </Row>
+        </Container>
+
     );
 });
 
