@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ilyagoncharovy/my-chat/static/css/main.44f8b8b5.css",
-    "main.js": "/ilyagoncharovy/my-chat/static/js/main.88393665.js",
-    "static/js/787.60bf9af3.chunk.js": "/ilyagoncharovy/my-chat/static/js/787.60bf9af3.chunk.js",
+    "main.js": "/ilyagoncharovy/my-chat/static/js/main.e25d81c4.js",
+    "static/js/787.7efd31bd.chunk.js": "/ilyagoncharovy/my-chat/static/js/787.7efd31bd.chunk.js",
     "index.html": "/ilyagoncharovy/my-chat/index.html",
     "main.44f8b8b5.css.map": "/ilyagoncharovy/my-chat/static/css/main.44f8b8b5.css.map",
-    "main.88393665.js.map": "/ilyagoncharovy/my-chat/static/js/main.88393665.js.map",
-    "787.60bf9af3.chunk.js.map": "/ilyagoncharovy/my-chat/static/js/787.60bf9af3.chunk.js.map"
+    "main.e25d81c4.js.map": "/ilyagoncharovy/my-chat/static/js/main.e25d81c4.js.map",
+    "787.7efd31bd.chunk.js.map": "/ilyagoncharovy/my-chat/static/js/787.7efd31bd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.44f8b8b5.css",
-    "static/js/main.88393665.js"
+    "static/js/main.e25d81c4.js"
   ]
 }
