@@ -40,7 +40,7 @@ export const Messages = React.memo(() => {
     }
 
     return (
-        <Container style={{height: "700px", marginTop: "78px"}}>
+        <Container style={{height: "700px", width: "60%", marginTop: "78px"}}>
             <Row className="overflow-auto h-75 mt-5" onScroll={scrollHandler}>
                 {messages.map((el) => <Message message={el} key={el.id}/>)}
                 <div ref={messagesAnchorRef}></div>

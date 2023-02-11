@@ -36,7 +36,7 @@ export const LoginForm = () => {
     }
 
     return (
-        <Container fluid>
+        <Container style={{marginTop: "70px"}}>
             <Row className="m-2">
                 <Col>
                     <label>
@@ -59,33 +59,35 @@ export const LoginForm = () => {
             <Row className="m-2">
                 <Col>
                     <form onSubmit={formik.handleSubmit}>
-                        <div>
+                        <Col>
                             <input type="email"
                                    id="email"
+                                   placeholder="email"
                                    {...formik.getFieldProps('email')}
                             />
                             {formik.touched.email && formik.errors.email ? (
                                 <div>{formik.errors.email}</div>
                             ) : null}
-                        </div>
-                        <div>
+                        </Col>
+                        <Col>
                             <input
                                 type="password"
                                 id="password"
+                                placeholder="password"
                                 {...formik.getFieldProps('password')}
                             />
                             {formik.touched.password && formik.errors.password ? (
                                 <div>{formik.errors.password}</div>
                             ) : null}
-                        </div>
-                        <div>
+                        </Col>
+                        <Col>
                             <input
                                 type="checkbox"
                                 id="rememberMe"
                                 {...formik.getFieldProps('rememberMe')}
                             />
                             <span>Remember me</span>
-                        </div>
+                        </Col>
                         <Button type="submit" variant="primary">Login</Button>
                     </form>
                 </Col>
