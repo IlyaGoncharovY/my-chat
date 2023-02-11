@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/IlyaGoncharovY/my-chat/static/css/main.44f8b8b5.css",
+    "main.js": "/IlyaGoncharovY/my-chat/static/js/main.fe03d337.js",
+    "static/js/787.60bf9af3.chunk.js": "/IlyaGoncharovY/my-chat/static/js/787.60bf9af3.chunk.js",
+    "index.html": "/IlyaGoncharovY/my-chat/index.html",
+    "main.44f8b8b5.css.map": "/IlyaGoncharovY/my-chat/static/css/main.44f8b8b5.css.map",
+    "main.fe03d337.js.map": "/IlyaGoncharovY/my-chat/static/js/main.fe03d337.js.map",
+    "787.60bf9af3.chunk.js.map": "/IlyaGoncharovY/my-chat/static/js/787.60bf9af3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.44f8b8b5.css",
+    "static/js/main.fe03d337.js"
+  ]
+}
