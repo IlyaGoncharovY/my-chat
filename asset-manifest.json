@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ilyagoncharovy/my-chat/static/css/main.44f8b8b5.css",
-    "main.js": "/ilyagoncharovy/my-chat/static/js/main.e25d81c4.js",
-    "static/js/787.7efd31bd.chunk.js": "/ilyagoncharovy/my-chat/static/js/787.7efd31bd.chunk.js",
-    "index.html": "/ilyagoncharovy/my-chat/index.html",
-    "main.44f8b8b5.css.map": "/ilyagoncharovy/my-chat/static/css/main.44f8b8b5.css.map",
-    "main.e25d81c4.js.map": "/ilyagoncharovy/my-chat/static/js/main.e25d81c4.js.map",
-    "787.7efd31bd.chunk.js.map": "/ilyagoncharovy/my-chat/static/js/787.7efd31bd.chunk.js.map"
+    "main.css": "/IlyaGoncharovY/my-chat/static/css/main.44f8b8b5.css",
+    "main.js": "/IlyaGoncharovY/my-chat/static/js/main.04e85a56.js",
+    "static/js/787.60bf9af3.chunk.js": "/IlyaGoncharovY/my-chat/static/js/787.60bf9af3.chunk.js",
+    "index.html": "/IlyaGoncharovY/my-chat/index.html",
+    "main.44f8b8b5.css.map": "/IlyaGoncharovY/my-chat/static/css/main.44f8b8b5.css.map",
+    "main.04e85a56.js.map": "/IlyaGoncharovY/my-chat/static/js/main.04e85a56.js.map",
+    "787.60bf9af3.chunk.js.map": "/IlyaGoncharovY/my-chat/static/js/787.60bf9af3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.44f8b8b5.css",
-    "static/js/main.e25d81c4.js"
+    "static/js/main.04e85a56.js"
   ]
 }
